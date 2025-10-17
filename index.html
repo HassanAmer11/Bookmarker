@@ -11,7 +11,7 @@
 
 <body>
     <div class="hero">
-        <div class="container">
+        <div class="container  mb-5">
             <h1 class="mt-3 text-center">
                 Bookmarker
             </h1>
@@ -19,7 +19,7 @@
             <h2 class=" text-center">
                 Bookmark your favorite sites
             </h2>
-    
+
             <div class="my-5">
                 <div class="mb-3">
                     <label for="bookmarkName" class="form-label">Bookmark Name</label>
@@ -42,10 +42,10 @@
                     <button type="button" class="btn btn-danger px-5" onclick="addNewBookmark()">Submit</button>
                 </div>
             </div>
-    
+
             <hr class=" mb-4">
-            <table class="table table-bordered">
-    
+            <!-- <table class="table table-bordered">
+
                 <head>
                     <th>Index</th>
                     <th>Website Name</th>
@@ -54,7 +54,11 @@
                 </head>
                 <tbody id="data-rows">
                 </tbody>
-            </table>
+            </table> -->
+
+            <div class="row g-3" id="data-rows">
+            </div>
+
         </div>
     </div>
     <script src="./main.js"></script>

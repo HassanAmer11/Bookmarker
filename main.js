@@ -41,20 +41,38 @@ function displayBookmarks(bookmarkList) {
   var data = "";
   for (let i = 0; i < bookmarkList.length; i++) {
     const element = bookmarkList[i];
+    // data += `
+    //             <tr>
+    //                 <td>${i + 1}</td>
+    //                 <td>${element.Name}</td>
+    //                 <td>
+    //                     <a href="${
+    //                       element.Url
+    //                     }" target="_blank" class="btn btn-success">Visit</a>
+    //                 </td>
+    //                 <td>
+    //                     <button type="button" class="btn btn-danger" onclick="deleteBookmark(${i})">Delete</button>
+    //                 </td>
+    //             </tr>       
+    //     `;
+    
     data += `
-                <tr>
-                    <td>${i + 1}</td>
-                    <td>${element.Name}</td>
-                    <td>
-                        <a href="${
-                          element.Url
-                        }" target="_blank" class="btn btn-success">Visit</a>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-danger" onclick="deleteBookmark(${i})">Delete</button>
-                    </td>
-                </tr>       
-        `;
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card align-items-center">
+                        <div class="card-body d-flex">
+                            <h2 class="h3">${i + 1}.</h2>
+                            <h3 class="h3">${element.Name}</h3>
+                        </div>
+                        <div class="card-footer w-100 text-center">
+                            <a href="${
+                              element.Url
+                            }" target="_blank" class="btn btn-success">Visit</a>
+                            <button type="button" class="btn btn-danger"  onclick="deleteBookmark(${i})">Delete</button>
+                        </div>
+                    </div>
+                </div>
+
+    `;
   }
   rowData.innerHTML = data;
 }

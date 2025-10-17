@@ -26,3 +26,7 @@ h2{
 hr{
     border-style: dashed !important;
 }
+
+.card-body.d-flex {
+    height: 100px;
+}
