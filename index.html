@@ -11,57 +11,62 @@
 
 <body>
     <div class="hero">
-<div class="container  mb-5">
-    <h1 class="mt-3 text-center">
-        Bookmarker
-    </h1>
-    <hr class="my-4">
-    <h2 class=" text-center">
-        Bookmark your favorite sites
-    </h2>
+        <div class="container  mb-5">
+            <h1 class="mt-3 text-center">
+                Bookmarker
+            </h1>
+            <hr class="my-4">
+            <h2 class=" text-center">
+                Bookmark your favorite sites
+            </h2>
 
-    <div class="my-4">
-        <div class="mb-3">
-            <div class="input-group">
-                <span class="col-md-2 input-group-text" id="basic-addon3">Bookmark Name</span>
-                <input type="text" oninput="validateForm(this)" class="form-control" id="bookmarkName"
-                    aria-describedby="basic-addon3" placeholder="Bookmark Name">
+            <div class="my-4">
+                <div class="mb-3">
+                    <div class="input-group">
+                        <span class="col-md-2 input-group-text" id="basic-addon3">Bookmark Name</span>
+                        <input type="text" oninput="validateForm(this)" class="form-control" id="bookmarkName"
+                            aria-describedby="basic-addon3" placeholder="Bookmark Name">
+                    </div>
+                    <div class="d-none form-text my-2">
+                        <p class="alert alert-danger m-0 py-2">
+                            The Bookmark name must start with a capital letter and consist of at most two syllables, Max
+                            Length
+                            22
+                        </p>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="input-group">
+                        <span class="col-md-2 input-group-text" id="basic-url">Site URL </span>
+                        <input type="text" oninput="validateForm(this)" class="form-control" id="siteUrl"
+                            aria-describedby="basic-url" placeholder="Website URL">
+                    </div>
+                    <div class="d-none form-text my-2">
+                        <p class="alert alert-danger m-0 py-2">
+                            The website link must be valid.
+                            <span class="text-muted">Example https://google.com</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="d-none form-text my-2" id="Bookmarkexist">
+                    <p class="text-center alert alert-danger m-0 py-2">
+                        This Bookmark already exists
+                    </p>
+                </div>
+                <div class="my-5 text-center">
+                    <button type="button" class="btn btn-danger px-5" onclick="addNewBookmark()">Submit</button>
+                </div>
             </div>
-            <div class="d-none form-text my-2">
-                <p class="alert alert-danger m-0 py-2">
-                    The Bookmark name must start with a capital letter and consist of at most two syllables, Max Length
-                    22
-                </p>
+
+            <hr class=" mb-4">
+
+
+            <div class="row g-3" id="data-rows">
+
+
             </div>
+
         </div>
-        <div class="mb-3">
-            <div class="input-group">
-                <span class="col-md-2 input-group-text" id="basic-url">Site URL </span>
-                <input type="text" oninput="validateUrl(this)" class="form-control" id="siteUrl"
-                    aria-describedby="basic-url" placeholder="Website URL">
-            </div>
-            <div class="d-none form-text my-2">
-                <p class="alert alert-danger m-0 py-2">
-                    The website link must be valid.
-                    <span class="text-muted">Example https://google.com</span>
-                </p>
-            </div>
-        </div>
-
-        <div class="my-5 text-center">
-            <button type="button" class="btn btn-danger px-5" onclick="addNewBookmark()">Submit</button>
-        </div>
-    </div>
-
-    <hr class=" mb-4">
-
-
-    <div class="row g-3" id="data-rows">
-
-
-    </div>
-
-</div>
     </div>
     <script src="./main.js"></script>
 </body>

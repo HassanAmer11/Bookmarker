@@ -1,41 +1,50 @@
-var bookmarkName = document.getElementById("bookmarkName");
-var siteUrl = document.getElementById("siteUrl");
+var bookmarkInput = document.getElementById("bookmarkName");
+var siteUrlInput = document.getElementById("siteUrl");
 var rowData = document.getElementById("data-rows");
 var bookmarkList = JSON.parse(localStorage.getItem("bookmarks")) || [];
 displayBookmarks(bookmarkList);
 
+function isBookmarkexist() {
+  for (let i = 0; i < bookmarkList.length; i++) {
+    let bookmarkNameValue = bookmarkInput.value.toLowerCase();
+    if (
+      bookmarkList[i].Name.toLowerCase().trim() === bookmarkNameValue.trim()
+    ) {
+      document.getElementById("Bookmarkexist").classList.remove("d-none");
+      return true;
+    }
+  }
+  return false;
+}
+
 function addNewBookmark() {
-  var isValidUrl = validateUrl(siteUrl);
-  var isValidName = validateForm(bookmarkName);
+  document.getElementById("Bookmarkexist").classList.add("d-none");
+  var isValidUrl = validateForm(siteUrlInput);
+  var isValidName = validateForm(bookmarkInput);
   if (isValidUrl && isValidName) {
-    var isExist = false;
-    for (let i = 0; i < bookmarkList.length; i++) {
-      if (
-        bookmarkList[i].Name.toLowerCase() === bookmarkName.value.toLowerCase()
-      ) {
-        isExist = true;
-      }
-    }
-    if (isExist === false) {
-      var bookmark = {
-        Name: bookmarkName.value,
-        Url: siteUrl.value,
-      };
-      bookmarkList.push(bookmark);
-      localStorage.setItem("bookmarks", JSON.stringify(bookmarkList));
-      displayBookmarks(bookmarkList);
-      claerForm();
-    }
+    if (isBookmarkexist()) return false;
+
+    var bookmark = {
+      Name: bookmarkInput.value,
+      Url: siteUrlInput.value,
+    };
+    bookmarkList.push(bookmark);
+    localStorage.setItem("bookmarks", JSON.stringify(bookmarkList));
+    displayBookmarks(bookmarkList);
+    claerForm();
   }
 }
 
 function claerForm() {
-  siteUrl.value = null;
-  bookmarkName.value = null;
+  siteUrlInput.value = null;
+  bookmarkInput.value = null;
+  siteUrlInput.classList.remove("is-valid");
+  bookmarkInput.classList.remove("is-valid");
 }
 
 function deleteBookmark(deletedIndex) {
   bookmarkList.splice(deletedIndex, 1);
+  localStorage.setItem("bookmarks", JSON.stringify(bookmarkList));
   displayBookmarks(bookmarkList);
 }
 
@@ -66,6 +75,25 @@ function displayBookmarks(bookmarkList) {
 }
 
 function validateForm(src) {
+  var regex = {
+    bookmarkName: /^[A-Z]\w{2,10}[\s-]\w{0,10}$/,
+    siteUrl: /^(https?:\/\/)?(www\.)?([a-zA-Z0-9-]+\.)+[a-z]{2,6}(\/[^\s]*)?$/i,
+  }; 
+  if (regex[src.id].test(src.value)) {
+    src.classList.remove("is-invalid");
+    src.classList.add("is-valid");
+    src.parentElement.nextElementSibling.classList.add("d-none");
+    return true;
+  } else {
+    src.classList.add("is-invalid");
+    src.classList.remove("is-valid");
+    src.parentElement.nextElementSibling.classList.remove("d-none");
+    return false;
+  }
+}
+
+/*
+function validateForm(src) {
   var regex = /^[A-Z]\w{2,10}[\s-]\w{0,10}$/;
   if (regex.test(src.value)) {
     src.classList.remove("is-invalid");
@@ -81,7 +109,7 @@ function validateForm(src) {
 }
 
 function validateUrl(src) {
-  var regex = /^http[s]?:\/\/\w{1,20}.\w{1,20}$/;
+  var regex = /^(https?:\/\/)?(www\.)?([a-zA-Z0-9-]+\.)+[a-z]{2,6}(\/[^\s]*)?$/i;
   if (regex.test(src.value)) {
     src.classList.remove("is-invalid");
     src.classList.add("is-valid");
@@ -94,3 +122,4 @@ function validateUrl(src) {
     return false;
   }
 }
+*/
