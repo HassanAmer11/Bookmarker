@@ -10,7 +10,9 @@ function addNewBookmark() {
   if (isValidUrl && isValidName) {
     var isExist = false;
     for (let i = 0; i < bookmarkList.length; i++) {
-      if (bookmarkList[i].Name == bookmarkName.value) {
+      if (
+        bookmarkList[i].Name.toLowerCase() === bookmarkName.value.toLowerCase()
+      ) {
         isExist = true;
       }
     }
